@@ -1,0 +1,1461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>A+ Core 1 — IT Technician Challenge</title>
+<style>
+  #aplus1201-sim {
+    --navy: #0b1f33;
+    --navy-2: #123a5a;
+    --blue: #1769aa;
+    --blue-2: #2d86c9;
+    --blue-soft: #eaf4fb;
+    --white: #ffffff;
+    --gray-25: #fbfcfd;
+    --gray-50: #f4f7f9;
+    --gray-100: #e7edf2;
+    --gray-200: #d4dde5;
+    --gray-500: #687786;
+    --gray-700: #334454;
+    --green: #16784a;
+    --green-soft: #e9f7ef;
+    --orange: #c85b14;
+    --orange-soft: #fff2e8;
+    --red: #b83a3a;
+    --red-soft: #fdecec;
+    --shadow: 0 14px 34px rgba(16, 42, 67, 0.13);
+    --radius: 16px;
+    width: 100%;
+    max-width: 1420px;
+    margin: 14px auto;
+    background: var(--white);
+    color: var(--navy);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.45;
+  }
+  #aplus1201-sim * { box-sizing: border-box; }
+  #aplus1201-sim button,
+  #aplus1201-sim textarea,
+  #aplus1201-sim input { font: inherit; }
+  #aplus1201-sim button { cursor: pointer; }
+  #aplus1201-sim .hidden { display: none !important; }
+  #aplus1201-sim .topbar {
+    background: linear-gradient(120deg, var(--navy), var(--navy-2));
+    color: var(--white);
+    padding: 22px 26px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  #aplus1201-sim .brand-row { display: flex; align-items: center; gap: 14px; min-width: 0; }
+  #aplus1201-sim .brand-mark {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    border: 2px solid rgba(255,255,255,.75);
+    position: relative;
+    flex: 0 0 auto;
+  }
+  #aplus1201-sim .brand-mark::before,
+  #aplus1201-sim .brand-mark::after {
+    content: "";
+    position: absolute;
+    background: #6fc4f2;
+  }
+  #aplus1201-sim .brand-mark::before { left: 8px; right: 8px; top: 13px; height: 3px; }
+  #aplus1201-sim .brand-mark::after { top: 8px; bottom: 8px; left: 19px; width: 3px; }
+  #aplus1201-sim .eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .11em;
+    text-transform: uppercase;
+    opacity: .78;
+    margin-bottom: 4px;
+  }
+  #aplus1201-sim h1 { margin: 0; font-size: clamp(22px, 3vw, 34px); line-height: 1.08; }
+  #aplus1201-sim .top-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  #aplus1201-sim .ghost-btn,
+  #aplus1201-sim .primary-btn,
+  #aplus1201-sim .secondary-btn,
+  #aplus1201-sim .danger-btn,
+  #aplus1201-sim .tool-btn,
+  #aplus1201-sim .choice-btn {
+    border: 0;
+    border-radius: 9px;
+    padding: 10px 14px;
+    font-weight: 700;
+    transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+  }
+  #aplus1201-sim .ghost-btn { background: rgba(255,255,255,.12); color: white; border: 1px solid rgba(255,255,255,.28); }
+  #aplus1201-sim .ghost-btn:hover,
+  #aplus1201-sim .primary-btn:hover,
+  #aplus1201-sim .secondary-btn:hover,
+  #aplus1201-sim .danger-btn:hover,
+  #aplus1201-sim .tool-btn:hover,
+  #aplus1201-sim .choice-btn:hover { transform: translateY(-1px); }
+  #aplus1201-sim .primary-btn { background: var(--blue); color: white; box-shadow: 0 5px 14px rgba(23,105,170,.22); }
+  #aplus1201-sim .secondary-btn { background: var(--white); color: var(--navy); border: 1px solid var(--gray-200); }
+  #aplus1201-sim .danger-btn { background: var(--red); color: white; }
+  #aplus1201-sim .workspace { padding: 20px; background: var(--gray-50); }
+  #aplus1201-sim .welcome-card {
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: 14px;
+    padding: clamp(22px, 4vw, 44px);
+    max-width: 980px;
+    margin: 8px auto;
+  }
+  #aplus1201-sim .welcome-card h2 { margin: 0 0 8px; font-size: 28px; }
+  #aplus1201-sim .welcome-card p { color: var(--gray-700); margin: 8px 0 14px; }
+  #aplus1201-sim .welcome-callout {
+    margin: 20px 0;
+    border-left: 5px solid var(--blue);
+    background: var(--blue-soft);
+    padding: 16px 18px;
+    border-radius: 8px;
+    color: var(--navy);
+  }
+  #aplus1201-sim .welcome-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; margin: 18px 0 24px; }
+  #aplus1201-sim .welcome-tile { border: 1px solid var(--gray-200); border-radius: 10px; padding: 14px; background: var(--gray-25); }
+  #aplus1201-sim .welcome-tile strong { display: block; margin-bottom: 4px; }
+  #aplus1201-sim .metrics {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  #aplus1201-sim .metric {
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: 11px;
+    padding: 12px 14px;
+    min-width: 0;
+  }
+  #aplus1201-sim .metric-label { color: var(--gray-500); text-transform: uppercase; font-size: 10px; letter-spacing: .08em; font-weight: 700; }
+  #aplus1201-sim .metric-value { font-size: 19px; font-weight: 800; margin-top: 3px; color: var(--navy); }
+  #aplus1201-sim .progress-shell { height: 7px; background: var(--gray-100); border-radius: 20px; overflow: hidden; margin-top: 7px; }
+  #aplus1201-sim .progress-bar { height: 100%; width: 0%; background: var(--blue); transition: width .25s ease; }
+  #aplus1201-sim .dashboard-grid { display: grid; grid-template-columns: 330px minmax(0,1fr); gap: 16px; align-items: start; }
+  #aplus1201-sim .panel {
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: 13px;
+    overflow: hidden;
+  }
+  #aplus1201-sim .panel-head { padding: 14px 16px; border-bottom: 1px solid var(--gray-200); display: flex; align-items: center; justify-content: space-between; gap: 10px; background: var(--gray-25); }
+  #aplus1201-sim .panel-head h2,
+  #aplus1201-sim .panel-head h3 { margin: 0; font-size: 16px; }
+  #aplus1201-sim .queue { max-height: 760px; overflow: auto; padding: 8px; }
+  #aplus1201-sim .ticket-item {
+    width: 100%;
+    text-align: left;
+    border: 1px solid transparent;
+    background: white;
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 7px;
+    color: var(--navy);
+  }
+  #aplus1201-sim .ticket-item:hover { background: var(--gray-50); border-color: var(--gray-200); }
+  #aplus1201-sim .ticket-item.active { background: var(--blue-soft); border-color: #9bc8e7; box-shadow: inset 3px 0 0 var(--blue); }
+  #aplus1201-sim .ticket-item.done { background: var(--green-soft); border-color: #b8e2c9; }
+  #aplus1201-sim .ticket-top { display: flex; justify-content: space-between; gap: 8px; align-items: center; margin-bottom: 5px; }
+  #aplus1201-sim .ticket-id { font-weight: 800; font-size: 13px; }
+  #aplus1201-sim .priority { display: inline-flex; align-items: center; gap: 5px; font-size: 10px; font-weight: 800; padding: 3px 7px; border-radius: 99px; }
+  #aplus1201-sim .priority::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+  #aplus1201-sim .p-low { color: #376b52; background: #edf7f1; }
+  #aplus1201-sim .p-medium { color: #7c5b11; background: #fff6da; }
+  #aplus1201-sim .p-high { color: #a1451b; background: #fff0e7; }
+  #aplus1201-sim .p-critical { color: #a12626; background: #fdeaea; }
+  #aplus1201-sim .ticket-meta { color: var(--gray-500); font-size: 12px; display: flex; gap: 6px; flex-wrap: wrap; }
+  #aplus1201-sim .status-line { margin-top: 8px; font-size: 11px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
+  #aplus1201-sim .status-open { color: var(--orange); }
+  #aplus1201-sim .status-progress { color: var(--blue); }
+  #aplus1201-sim .status-done { color: var(--green); }
+  #aplus1201-sim .ticket-content { padding: 18px; }
+  #aplus1201-sim .case-header { display: flex; justify-content: space-between; gap: 14px; align-items: flex-start; flex-wrap: wrap; margin-bottom: 14px; }
+  #aplus1201-sim .case-header h2 { margin: 0 0 4px; font-size: clamp(20px,2.4vw,28px); }
+  #aplus1201-sim .case-sub { color: var(--gray-500); font-size: 13px; }
+  #aplus1201-sim .level-tag { border: 1px solid var(--gray-200); border-radius: 99px; padding: 6px 10px; background: var(--gray-50); color: var(--gray-700); font-weight: 700; font-size: 12px; }
+  #aplus1201-sim .scenario {
+    background: var(--gray-25);
+    border: 1px solid var(--gray-200);
+    border-left: 5px solid var(--blue);
+    border-radius: 10px;
+    padding: 16px;
+    margin: 12px 0 16px;
+    font-size: 16px;
+  }
+  #aplus1201-sim .snapshot { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 9px; margin-bottom: 16px; }
+  #aplus1201-sim .snapshot-item { border: 1px solid var(--gray-200); border-radius: 9px; padding: 10px 12px; background: white; }
+  #aplus1201-sim .snapshot-item span { color: var(--gray-500); display: block; font-size: 11px; text-transform: uppercase; letter-spacing: .04em; font-weight: 700; }
+  #aplus1201-sim .snapshot-item strong { display: block; margin-top: 3px; font-size: 14px; overflow-wrap: anywhere; }
+  #aplus1201-sim .section-card { border: 1px solid var(--gray-200); border-radius: 11px; margin-top: 12px; overflow: hidden; }
+  #aplus1201-sim .section-title { background: var(--gray-25); border-bottom: 1px solid var(--gray-200); padding: 11px 13px; display: flex; justify-content: space-between; gap: 10px; align-items: center; }
+  #aplus1201-sim .section-title strong { font-size: 14px; }
+  #aplus1201-sim .section-body { padding: 12px; }
+  #aplus1201-sim .tool-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; }
+  #aplus1201-sim .tool-btn { text-align: left; background: white; color: var(--navy); border: 1px solid var(--gray-200); min-height: 44px; }
+  #aplus1201-sim .tool-btn.used { background: var(--green-soft); border-color: #b8e2c9; color: #165d3d; }
+  #aplus1201-sim .tool-btn:disabled { cursor: default; opacity: 1; transform: none; }
+  #aplus1201-sim .results-log { margin-top: 10px; display: grid; gap: 7px; }
+  #aplus1201-sim .log-entry { border-left: 4px solid var(--blue); background: var(--blue-soft); padding: 9px 10px; border-radius: 7px; font-size: 13px; }
+  #aplus1201-sim .log-entry strong { display: block; margin-bottom: 2px; }
+  #aplus1201-sim .decision-box { border: 1px solid #b9cfdf; background: #f7fbfe; border-radius: 11px; padding: 14px; }
+  #aplus1201-sim .decision-count { color: var(--blue); font-size: 11px; text-transform: uppercase; letter-spacing: .06em; font-weight: 800; }
+  #aplus1201-sim .decision-box h3 { margin: 5px 0 12px; font-size: 17px; }
+  #aplus1201-sim .choices { display: grid; gap: 8px; }
+  #aplus1201-sim .choice-btn { text-align: left; background: white; color: var(--navy); border: 1px solid var(--gray-200); }
+  #aplus1201-sim .choice-btn.correct { background: var(--green-soft); border-color: #9ed4b5; color: #155d3c; }
+  #aplus1201-sim .choice-btn.wrong { background: var(--red-soft); border-color: #e6b7b7; color: #8d2c2c; }
+  #aplus1201-sim .feedback { margin-top: 10px; padding: 10px 12px; border-radius: 8px; font-size: 13px; }
+  #aplus1201-sim .feedback.good { background: var(--green-soft); color: #155d3c; border: 1px solid #b8e2c9; }
+  #aplus1201-sim .feedback.bad { background: var(--orange-soft); color: #8b4218; border: 1px solid #f0c8aa; }
+  #aplus1201-sim .next-wrap { margin-top: 10px; display: flex; justify-content: flex-end; }
+  #aplus1201-sim .hint-box { margin-top: 10px; background: #fff8df; border: 1px solid #eedc9f; padding: 10px 12px; border-radius: 8px; color: #685118; font-size: 13px; }
+  #aplus1201-sim .resolution-box { background: var(--gray-25); border: 1px solid var(--gray-200); border-radius: 11px; padding: 14px; margin-top: 12px; }
+  #aplus1201-sim .resolution-box h3 { margin: 0 0 9px; }
+  #aplus1201-sim .resolution-box textarea,
+  #aplus1201-sim .reflection-grid textarea {
+    width: 100%;
+    min-height: 88px;
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+    padding: 10px 11px;
+    resize: vertical;
+    background: white;
+    color: var(--navy);
+  }
+  #aplus1201-sim .resolution-actions { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+  #aplus1201-sim .char-note { color: var(--gray-500); font-size: 12px; }
+  #aplus1201-sim .empty-state { text-align: center; padding: 58px 20px; color: var(--gray-500); }
+  #aplus1201-sim .empty-state .empty-icon { width: 52px; height: 52px; border: 3px solid var(--gray-200); border-radius: 13px; margin: 0 auto 12px; position: relative; }
+  #aplus1201-sim .empty-state .empty-icon::before { content: ""; position: absolute; width: 20px; height: 3px; background: var(--gray-200); left: 13px; top: 17px; box-shadow: 0 8px 0 var(--gray-200); }
+  #aplus1201-sim .finish-banner { background: var(--green-soft); border: 1px solid #b8e2c9; border-radius: 11px; padding: 14px; margin: 0 0 14px; display: flex; justify-content: space-between; gap: 12px; align-items: center; flex-wrap: wrap; }
+  #aplus1201-sim .report-wrap { display: grid; gap: 16px; }
+  #aplus1201-sim .report-hero { background: linear-gradient(120deg, var(--navy), #174e76); color: white; padding: 22px; border-radius: 12px; display: grid; grid-template-columns: 180px 1fr; gap: 20px; align-items: center; }
+  #aplus1201-sim .score-ring { width: 150px; height: 150px; border-radius: 50%; background: conic-gradient(#6fc4f2 0%, #6fc4f2 var(--scoreDeg,0%), rgba(255,255,255,.16) var(--scoreDeg,0%), rgba(255,255,255,.16) 100%); display: grid; place-items: center; margin: auto; }
+  #aplus1201-sim .score-ring-inner { width: 116px; height: 116px; border-radius: 50%; background: var(--navy); display: grid; place-items: center; text-align: center; }
+  #aplus1201-sim .score-ring-inner b { font-size: 32px; display: block; line-height: 1; }
+  #aplus1201-sim .report-hero h2 { margin: 0 0 5px; font-size: 26px; }
+  #aplus1201-sim .report-hero p { margin: 4px 0; color: rgba(255,255,255,.85); }
+  #aplus1201-sim .report-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
+  #aplus1201-sim .skill-card { border: 1px solid var(--gray-200); border-radius: 10px; padding: 12px; background: white; }
+  #aplus1201-sim .skill-top { display: flex; justify-content: space-between; gap: 8px; font-weight: 700; font-size: 13px; }
+  #aplus1201-sim .skill-bar { margin-top: 7px; background: var(--gray-100); height: 8px; border-radius: 99px; overflow: hidden; }
+  #aplus1201-sim .skill-fill { height: 100%; background: var(--blue); width: 0%; }
+  #aplus1201-sim .report-stats { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: 9px; }
+  #aplus1201-sim .report-stat { border: 1px solid var(--gray-200); border-radius: 9px; padding: 11px; text-align: center; background: var(--gray-25); }
+  #aplus1201-sim .report-stat b { display: block; font-size: 21px; }
+  #aplus1201-sim .report-stat span { color: var(--gray-500); font-size: 11px; }
+  #aplus1201-sim .tabs { display: flex; gap: 7px; flex-wrap: wrap; border-bottom: 1px solid var(--gray-200); padding-bottom: 9px; }
+  #aplus1201-sim .tab-btn { border: 1px solid var(--gray-200); background: white; color: var(--navy); border-radius: 8px; padding: 8px 11px; font-weight: 700; }
+  #aplus1201-sim .tab-btn.active { background: var(--blue); color: white; border-color: var(--blue); }
+  #aplus1201-sim .review-list { display: grid; gap: 9px; }
+  #aplus1201-sim details { border: 1px solid var(--gray-200); border-radius: 9px; background: white; overflow: hidden; }
+  #aplus1201-sim summary { cursor: pointer; padding: 12px 14px; font-weight: 800; background: var(--gray-25); }
+  #aplus1201-sim .review-body { padding: 13px 14px; font-size: 13px; color: var(--gray-700); }
+  #aplus1201-sim .review-body p { margin: 6px 0; }
+  #aplus1201-sim .review-body strong { color: var(--navy); }
+  #aplus1201-sim .reflection-grid { display: grid; gap: 12px; }
+  #aplus1201-sim .reflection-item { border: 1px solid var(--gray-200); border-radius: 9px; padding: 12px; background: white; }
+  #aplus1201-sim .reflection-item label { display: block; font-weight: 700; margin-bottom: 7px; font-size: 13px; }
+  #aplus1201-sim .save-note { color: var(--green); font-size: 12px; font-weight: 700; min-height: 18px; }
+  #aplus1201-sim .workflow-strip { border: 1px solid var(--gray-200); background: white; border-radius: 10px; padding: 11px; margin: 12px 0; }
+  #aplus1201-sim .workflow-strip strong { display:block; margin-bottom:8px; font-size:13px; }
+  #aplus1201-sim .workflow-steps { display:grid; grid-template-columns:repeat(8,minmax(0,1fr)); gap:5px; }
+  #aplus1201-sim .workflow-step { min-width:0; padding:7px 5px; border-radius:7px; background:var(--gray-50); border:1px solid var(--gray-200); text-align:center; font-size:10px; font-weight:700; color:var(--gray-500); }
+  #aplus1201-sim .workflow-step.done { background:var(--green-soft); border-color:#b8e2c9; color:#236745; }
+  #aplus1201-sim .workflow-step.active { background:var(--blue-soft); border-color:#9bc8e7; color:var(--blue); box-shadow:inset 0 -2px 0 var(--blue); }
+  #aplus1201-sim .modal-backdrop { position: fixed; inset: 0; background: rgba(8,24,39,.58); z-index: 999999; display: grid; place-items: center; padding: 20px; }
+  #aplus1201-sim .modal { width: min(560px,100%); background: white; border-radius: 13px; box-shadow: 0 22px 60px rgba(0,0,0,.28); padding: 20px; }
+  #aplus1201-sim .modal h3 { margin: 0 0 7px; }
+  #aplus1201-sim .modal p { color: var(--gray-700); }
+  #aplus1201-sim .modal-actions { display: flex; justify-content: flex-end; gap: 9px; margin-top: 16px; }
+  #aplus1201-sim .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  @media (max-width: 1120px) {
+    #aplus1201-sim .metrics { grid-template-columns: repeat(3,minmax(0,1fr)); }
+    #aplus1201-sim .dashboard-grid { grid-template-columns: 280px minmax(0,1fr); }
+    #aplus1201-sim .report-stats { grid-template-columns: repeat(3,minmax(0,1fr)); }
+  }
+  @media (max-width: 820px) {
+    #aplus1201-sim .workspace { padding: 12px; }
+    #aplus1201-sim .dashboard-grid { grid-template-columns: 1fr; }
+    #aplus1201-sim .queue { max-height: 300px; }
+    #aplus1201-sim .welcome-grid { grid-template-columns: 1fr; }
+    #aplus1201-sim .report-hero { grid-template-columns: 1fr; text-align: center; }
+  }
+  @media (max-width: 620px) {
+    #aplus1201-sim .topbar { padding: 18px; }
+    #aplus1201-sim .metrics { grid-template-columns: repeat(2,minmax(0,1fr)); }
+    #aplus1201-sim .snapshot,
+    #aplus1201-sim .tool-grid,
+    #aplus1201-sim .report-grid { grid-template-columns: 1fr; }
+    #aplus1201-sim .report-stats { grid-template-columns: repeat(2,minmax(0,1fr)); }
+    #aplus1201-sim .workflow-steps { grid-template-columns: repeat(4,minmax(0,1fr)); }
+  }
+</style>
+</head>
+<body>
+<div id="aplus1201-sim">
+  <header class="topbar">
+    <div class="brand-row">
+      <div class="brand-mark" aria-hidden="true"></div>
+      <div>
+        <div class="eyebrow">Northstar Creative Solutions · IT Support</div>
+        <h1 style="color:#c85b14;">A+ Core 1 — IT Technician Challenge</h1>
+      </div>
+    </div>
+    <div class="top-actions">
+      <button class="ghost-btn hidden" id="reportBtn" type="button">Performance Report</button>
+      <button class="ghost-btn" id="resetBtn" type="button">Reset Simulation</button>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <section id="welcomeView" class="welcome-card">
+      <div class="eyebrow" style="color:#1769aa;opacity:1;">Final cumulative simulation · CompTIA A+ Core 1 (220-1201)</div>
+      <h2>Welcome to the IT Support Team.</h2>
+      <p>You have just been hired as a <strong>Junior IT Support Technician</strong> at Northstar Creative Solutions. Your queue contains real support incidents from employees across the company.</p>
+      <div class="welcome-callout">
+        You will not be told what topic each incident is testing. Use the evidence, ask useful questions, run diagnostics, form a theory, test it, fix the issue, verify functionality, and document what you did.
+      </div>
+      <div class="welcome-grid">
+        <div class="welcome-tile"><strong>Investigate before changing</strong><span>Gather facts and use diagnostic results instead of guessing.</span></div>
+        <div class="welcome-tile"><strong>Think like a technician</strong><span>Choose the best next action based on what you know at that moment.</span></div>
+        <div class="welcome-tile"><strong>Close the loop</strong><span>Verify full functionality and leave a useful resolution note.</span></div>
+      </div>
+      <button class="primary-btn" id="startBtn" type="button">Start Technician Shift</button>
+    </section>
+
+    <section id="simulationView" class="hidden">
+      <div class="metrics" aria-label="Simulation metrics">
+        <div class="metric"><div class="metric-label">Technician</div><div class="metric-value" style="font-size:14px;">Junior IT Support Technician</div></div>
+        <div class="metric"><div class="metric-label">Tickets Resolved</div><div class="metric-value" id="mResolved">0 / 12</div><div class="progress-shell"><div class="progress-bar" id="mProgress"></div></div></div>
+        <div class="metric"><div class="metric-label">Current Score</div><div class="metric-value" id="mScore">100%</div></div>
+        <div class="metric"><div class="metric-label">Incorrect Decisions</div><div class="metric-value" id="mWrong">0</div></div>
+        <div class="metric"><div class="metric-label">Hints Used</div><div class="metric-value" id="mHints">0</div></div>
+        <div class="metric"><div class="metric-label">Shift Time</div><div class="metric-value" id="mTime">00:00</div></div>
+      </div>
+
+      <div id="finishBanner" class="finish-banner hidden">
+        <div><strong>All support incidents are resolved.</strong><div style="color:#376b52;font-size:13px;">Your performance report and answer review are ready.</div></div>
+        <button class="primary-btn" id="finishBtn" type="button">Open Performance Report</button>
+      </div>
+
+      <div class="dashboard-grid">
+        <aside class="panel">
+          <div class="panel-head"><h2>Support Queue</h2><span id="queueCount" style="font-size:12px;color:#687786;">12 tickets</span></div>
+          <div class="queue" id="ticketQueue"></div>
+        </aside>
+        <section class="panel" id="ticketPanel">
+          <div class="empty-state" id="emptyTicket">
+            <div class="empty-icon" aria-hidden="true"></div>
+            <strong>Select a ticket from the queue</strong>
+            <div>Review the incident, gather information, and begin troubleshooting.</div>
+          </div>
+          <div class="ticket-content hidden" id="ticketContent"></div>
+        </section>
+      </div>
+    </section>
+
+    <section id="reportView" class="hidden report-wrap"></section>
+  </main>
+
+  <div id="resetModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="resetTitle">
+    <div class="modal">
+      <h3 id="resetTitle">Reset the entire simulation?</h3>
+      <p>This will clear ticket progress, scores, diagnostic results, hints, completed tickets, reflections, and the final report.</p>
+      <div class="modal-actions">
+        <button class="secondary-btn" id="cancelReset" type="button">Cancel</button>
+        <button class="danger-btn" id="confirmReset" type="button">Reset Everything</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  const root = document.getElementById("aplus1201-sim");
+  const $ = (sel) => root.querySelector(sel);
+  const esc = (value) => String(value == null ? "" : value).replace(/[&<>'"]/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[ch]));
+
+  const tickets = [
+    {
+      id:"TKT-1047", priority:"HIGH", level:"Level 1", department:"Design", device:"Workstation",
+      title:"Workstation shuts down during large design projects",
+      scenario:"A graphic designer reports that the workstation abruptly powers off while rendering large projects. It starts again after several minutes and behaves normally during light work.",
+      snapshot:[
+        ["CPU","8-core desktop CPU"],["RAM","32 GB installed"],["GPU","Dedicated graphics card"],["Power supply","750 W, correct connectors installed"]
+      ],
+      customer:[
+        ["When does the shutdown happen?","Only during long renders or heavy exports. Email and web browsing are fine."],
+        ["Did anything change recently?","The problem became frequent after the computer was moved to a smaller desk compartment."],
+        ["Does it restart immediately?","Usually no. It needs a few minutes before it will stay on again."]
+      ],
+      diagnostics:[
+        ["Check CPU temperature under load","CPU reaches 98°C during rendering; thermal throttling begins near the limit."],
+        ["Inspect fan status","CPU fan is spinning, but airflow at the rear exhaust is weak."],
+        ["Check CPU and GPU usage","CPU 94%, GPU 82% during the render. High utilization is expected for this workload."],
+        ["Inspect vents and workspace","Rear exhaust is less than 2 cm from the desk wall and the front intake is partly blocked."],
+        ["Review memory usage","22 GB of 32 GB is in use. No memory errors are reported."],
+        ["Review component compatibility","CPU, motherboard, RAM, GPU, cooler mounting hardware, and PSU connectors are compatible with the workstation configuration."]
+      ],
+      hints:[
+        "Focus on what changes only under sustained load and why the computer needs time before it behaves normally again.",
+        "Compare the temperature reading with the airflow information. Which evidence best explains a protective shutdown?"
+      ],
+      decisions:[
+        {
+          q:"Which finding is most important to investigate first?",
+          choices:[
+            ["The CPU temperature reaching 98°C during heavy load",1,"That is strong evidence tied directly to the shutdown condition."],
+            ["The 22 GB of RAM currently in use",0,"High memory use during a large design workload can be normal and does not explain the cool-down period."],
+            ["The dedicated GPU being active",0,"A design application is expected to use the GPU. Utilization alone is not a fault."],
+            ["The 750 W power supply rating",0,"The wattage and connectors are appropriate; there is stronger evidence elsewhere."]
+          ]
+        },
+        {
+          q:"What is the best theory based on the evidence?",
+          choices:[
+            ["The system is overheating because airflow is restricted",1,"The high temperature, weak exhaust, blocked intake, and cool-down behavior support this theory."],
+            ["The RAM capacity is too low",0,"The system still has available memory and no memory faults are reported."],
+            ["The GPU is incompatible with the motherboard",0,"The system is operating and rendering successfully before the shutdown occurs."],
+            ["The operating system must be reinstalled",0,"There is no evidence of an OS corruption issue."]
+          ]
+        },
+        {
+          q:"What is the most appropriate corrective action?",
+          choices:[
+            ["Restore proper intake/exhaust clearance, clean dust if present, and verify the cooler is seated correctly",1,"This addresses the thermal cause without replacing unrelated components."],
+            ["Replace the RAM with a larger kit",0,"RAM capacity is not the root cause shown by the evidence."],
+            ["Replace the monitor cable",0,"The incident is a shutdown under load, not a display-only failure."],
+            ["Disable the dedicated GPU",0,"That would reduce capability without addressing the thermal evidence."]
+          ]
+        },
+        {
+          q:"How should you verify the repair?",
+          choices:[
+            ["Run the same sustained render while monitoring temperatures and confirm the system remains stable",1,"Verification should reproduce the original workload and confirm the symptom is gone."],
+            ["Open a text editor for one minute",0,"That does not reproduce the condition that caused the failure."],
+            ["Confirm the computer can reach a website",0,"Network access does not verify a thermal repair."],
+            ["Power the monitor off and on",0,"That does not test the corrected system condition."]
+          ]
+        }
+      ],
+      skills:["Hardware Troubleshooting","Problem Solving","Critical Thinking","Troubleshooting Methodology","Verification","Documentation"],
+      review:{
+        happened:"The workstation shut down only during sustained design workloads and recovered after cooling.",
+        noticed:"CPU temperature reached 98°C and airflow was restricted by the desk placement.",
+        process:"Reproduce the load, monitor temperature, inspect fans and airflow, form a thermal theory, correct airflow/cooling, then repeat the workload.",
+        root:"Thermal shutdown caused by restricted airflow and excessive CPU temperature.",
+        solution:"Restore airflow clearance, clean/inspect cooling components, confirm the CPU cooler is properly seated, and retest under load.",
+        why:"Lower temperatures prevent the system from reaching its protective shutdown threshold.",
+        concept:"Cooling, thermal troubleshooting, component behavior under load, and evidence-based hardware diagnosis."
+      }
+    },
+    {
+      id:"TKT-1050", priority:"MEDIUM", level:"Level 1", department:"Creative Services", device:"Laptop + docking station",
+      title:"Second monitor suddenly shows no image",
+      scenario:"A graphic designer uses a laptop through a USB-C docking station. The primary external monitor works, but the second external monitor displays “No Signal” after the desk was reorganized this morning.",
+      snapshot:[
+        ["Primary display","Working at 2560 × 1440"],["Second display","Powered on; No Signal"],["Docking station","Powered USB-C dock with 2 display outputs"],["Recent event","Desk cables were disconnected and reconnected"]
+      ],
+      customer:[
+        ["Was the monitor working before the desk move?","Yes, both displays worked yesterday."],
+        ["Do you see a power light on the second monitor?","Yes. The monitor turns on and shows its on-screen menu."],
+        ["Were any display settings intentionally changed?","No. I only unplugged cables to move the desk."]
+      ],
+      diagnostics:[
+        ["Inspect the video cable","DisplayPort cable is connected to the docking station and firmly seated at both ends."],
+        ["Check the monitor input source","The monitor is currently set to HDMI 1."],
+        ["Check operating system display detection","Two displays are detected by the operating system."],
+        ["Swap docking-station DisplayPort outputs","The second monitor still shows No Signal because its selected input does not change."],
+        ["Inspect adapter use","No adapter is required; the cable is DisplayPort-to-DisplayPort."],
+        ["Check docking station status","Dock power is stable and the primary external monitor works through the same dock."]
+      ],
+      hints:[
+        "The operating system already detects both displays. Compare that with what the monitor itself is waiting to receive.",
+        "A powered-on monitor can still show No Signal when the selected input does not match the connected cable."
+      ],
+      decisions:[
+        {q:"What should you check before replacing hardware?",choices:[
+          ["Confirm the cable is secure and the monitor is using the matching input source",1,"Physical connection and input selection are fast, low-risk checks after cables were moved."],
+          ["Replace the docking station",0,"The primary external display works through the dock and the OS detects both displays, so replacing major hardware is premature."],
+          ["Replace system RAM",0,"RAM is unrelated to a single powered monitor showing No Signal."],
+          ["Reinstall the operating system",0,"The evidence points to a display path issue, not an OS-wide failure."]
+        ]},
+        {q:"The DisplayPort cable is secure, but the monitor input is set to HDMI 1. What should you do?",choices:[
+          ["Change the monitor input to DisplayPort",1,"The monitor must listen to the same interface carrying the signal."],
+          ["Set the default gateway manually",0,"Gateway settings do not affect a local monitor signal."],
+          ["Disable the primary monitor",0,"That does not correct the second monitor's selected source."],
+          ["Replace the power supply",0,"The monitor is powered and the workstation is operating normally."]
+        ]},
+        {q:"How do you verify the issue is fully resolved?",choices:[
+          ["Confirm the second display shows the desktop and verify the intended resolution/arrangement",1,"This confirms both signal restoration and usable display configuration."],
+          ["Ping the company router",0,"That checks networking, not the display repair."],
+          ["Print a test page",0,"That does not validate the monitor."],
+          ["Only confirm the monitor power light is on",0,"Power alone does not prove the video signal is restored."]
+        ]}
+      ],
+      skills:["Hardware Troubleshooting","Problem Solving","Troubleshooting Methodology","Verification","Documentation"],
+      review:{
+        happened:"The second monitor powered on but displayed No Signal after cables were moved.",
+        noticed:"The dock and DisplayPort cable path were working, the OS detected both monitors, but the second monitor was set to HDMI 1.",
+        process:"Check monitor/dock power, reseat the cable, verify the correct docking-station output, confirm OS detection, then verify the monitor input source.",
+        root:"The monitor was listening to the wrong input source.",
+        solution:"Select DisplayPort on the monitor and confirm the desktop is extended at the intended resolution.",
+        why:"A display only shows the signal from the input currently selected in its on-screen settings.",
+        concept:"Display interfaces, docking stations, USB-C display paths, monitor input selection, and basic display troubleshooting."
+      }
+    },
+    {
+      id:"TKT-1052", priority:"HIGH", level:"Level 2", department:"Finance", device:"Desktop workstation",
+      title:"Employee can reach office computers but not websites",
+      scenario:"A finance workstation can access a shared folder on another local PC, but web browsers cannot reach Internet sites. The issue started after the workstation was assigned a static address for an internal application.",
+      snapshot:[
+        ["IPv4 address","192.168.20.45"],["Subnet mask","255.255.255.0"],["Default gateway","192.168.20.254"],["DNS server","192.168.20.10"]
+      ],
+      customer:[
+        ["Can you open files from another office computer?","Yes, I can reach a shared folder on 192.168.20.60."],
+        ["Did the problem start after a change?","Yes. IT gave this computer a static IP this morning."],
+        ["Are nearby employees online?","Yes, everyone around me can browse normally."]
+      ],
+      diagnostics:[
+        ["Ping 192.168.20.60","Reply received: local network communication is working."],
+        ["Ping configured gateway 192.168.20.254","Request timed out."],
+        ["Check a working PC's gateway","A nearby working workstation uses 192.168.20.1 as its default gateway."],
+        ["Ping 192.168.20.1","Reply received from 192.168.20.1."],
+        ["Ping external IP 8.8.8.8","Request timed out while the incorrect gateway remains configured."],
+        ["Inspect Ethernet link","Link is up at 1 Gbps; no packet errors are reported."]
+      ],
+      hints:[
+        "The workstation can communicate inside its own subnet. What setting is used when traffic must leave that subnet?",
+        "Compare the configured gateway with the gateway used by a known-good workstation."
+      ],
+      decisions:[
+        {q:"What does successful communication with 192.168.20.60 tell you?",choices:[
+          ["The NIC, cable, and local subnet communication are functioning",1,"Local communication proves several lower-layer components are working."],
+          ["DNS must be working",0,"The test used an IP address, so it did not require name resolution."],
+          ["The Internet connection is definitely working",0,"A local subnet test does not prove traffic can leave the network."],
+          ["The monitor is configured correctly",0,"Display configuration is unrelated to this evidence."]
+        ]},
+        {q:"Which setting should you compare next on a known-good workstation?",choices:[
+          ["Default gateway",1,"The gateway is the next logical check when local traffic works but off-subnet traffic fails."],
+          ["Screen resolution",0,"Resolution does not control Internet routing."],
+          ["Installed RAM speed",0,"Memory speed does not explain a routing-only symptom."],
+          ["Printer driver",0,"The problem is not limited to printing."]
+        ]},
+        {q:"The correct gateway is 192.168.20.1. What should you change?",choices:[
+          ["Correct the workstation's default gateway to 192.168.20.1",1,"This gives off-subnet traffic the proper next hop."],
+          ["Change the subnet mask to 255.255.0.0",0,"That would incorrectly redefine the local network and is not supported by the evidence."],
+          ["Replace the Ethernet cable",0,"The cable is already supporting local traffic at 1 Gbps."],
+          ["Remove the DNS server",0,"DNS has not been identified as the failure here."]
+        ]},
+        {q:"What is the best verification sequence after correcting the gateway?",choices:[
+          ["Ping the gateway, ping an external IP, then open a website",1,"This verifies routing first and then end-user functionality."],
+          ["Restart the monitor and stop",0,"That does not verify network routing."],
+          ["Replace the NIC immediately",0,"There is no reason to replace hardware after the configuration is corrected."],
+          ["Only confirm the static IP is still 192.168.20.45",0,"The IP alone does not prove outside connectivity."]
+        ]}
+      ],
+      skills:["Networking","Problem Solving","Critical Thinking","Troubleshooting Methodology","Verification","Documentation"],
+      review:{
+        happened:"The workstation could reach local devices but not Internet destinations after static addressing was configured.",
+        noticed:"The local subnet worked, but the configured gateway differed from a known-good system and did not respond.",
+        process:"Confirm local connectivity, test the configured gateway, compare settings with a known-good host, correct the gateway, then test external connectivity.",
+        root:"Incorrect default gateway (192.168.20.254 instead of 192.168.20.1).",
+        solution:"Set the correct gateway and verify local, external IP, and website access.",
+        why:"Traffic destined outside the local subnet must be sent to the correct router interface.",
+        concept:"IPv4 addressing, subnet behavior, default gateways, and layered network troubleshooting."
+      }
+    },
+    {
+      id:"TKT-1056", priority:"HIGH", level:"Level 2", department:"Human Resources", device:"Laptop",
+      title:"Employee says the Internet is not working",
+      scenario:"An HR employee says “the Internet is down.” Other employees are online. The laptop shows a normal wired connection and can reach some destinations by IP address.",
+      snapshot:[
+        ["IPv4 address","10.20.30.77"],["Subnet mask","255.255.255.0"],["Default gateway","10.20.30.1"],["DNS server","10.20.30.53"]
+      ],
+      customer:[
+        ["Do websites fail in every browser?","Yes. The browser says the site address cannot be found."],
+        ["Can other employees browse normally?","Yes, other laptops are working."],
+        ["Did you change network settings?","No. This started after I returned from lunch."]
+      ],
+      diagnostics:[
+        ["Ping 10.20.30.1","Reply received from the default gateway."],
+        ["Ping 8.8.8.8","Reply received from 8.8.8.8."],
+        ["Ping northstar.local by name","Ping request could not find host northstar.local."],
+        ["Query configured DNS server","Requests to 10.20.30.53 time out."],
+        ["Inspect Ethernet adapter","Connected at 1 Gbps; valid DHCP lease present."],
+        ["Try company site by known IP","The test page loads when entered by IP address."]
+      ],
+      hints:[
+        "The laptop can reach the gateway and an external IP. What network function is still required when the user types a name?",
+        "Compare what succeeds by IP address with what fails by hostname."
+      ],
+      decisions:[
+        {q:"After the gateway responds, what is the best next test?",choices:[
+          ["Test reachability to an external IP address",1,"This checks whether routing beyond the local gateway works before focusing on name resolution."],
+          ["Replace the laptop battery",0,"Battery condition does not match the network symptom."],
+          ["Replace the display cable",0,"The display is not the reported failure."],
+          ["Upgrade the RAM",0,"Memory capacity is not the relevant next test."]
+        ]},
+        {q:"The external IP responds, but hostnames fail. What is the best theory?",choices:[
+          ["Name resolution is failing",1,"IP connectivity works, while hostname translation fails."],
+          ["The Ethernet cable is disconnected",0,"The laptop is successfully reaching external IP addresses."],
+          ["The router cannot reach the Internet",0,"An external IP reply proves the route is working."],
+          ["The laptop display adapter failed",0,"That is unrelated to hostname resolution."]
+        ]},
+        {q:"What should you correct or test next?",choices:[
+          ["Restore a working DNS server setting or service, then retry name resolution",1,"This directly addresses the failed network service shown by the tests."],
+          ["Replace the motherboard",0,"There is no hardware evidence supporting motherboard replacement."],
+          ["Change the subnet mask randomly",0,"The current subnet works for local and routed traffic."],
+          ["Disable the network adapter",0,"Disabling a working adapter would remove connectivity."]
+        ]},
+        {q:"What verifies the repair most completely?",choices:[
+          ["Resolve a hostname and open multiple websites by name",1,"This confirms the failed function is restored from the user's perspective."],
+          ["Only ping 8.8.8.8 again",0,"That confirms IP routing but not the name-resolution problem."],
+          ["Open Device Manager and stop",0,"Device status alone does not verify the repaired service."],
+          ["Print a document",0,"Printing does not test the DNS issue."]
+        ]}
+      ],
+      skills:["Networking","Problem Solving","Critical Thinking","Troubleshooting Methodology","Verification","Documentation"],
+      review:{
+        happened:"The user reported no Internet, but the laptop could reach the gateway and an external IP.",
+        noticed:"Connectivity worked by IP address while hostname lookups failed and the configured DNS server timed out.",
+        process:"Verify IP configuration, test gateway, test an external IP, test a hostname, inspect DNS configuration/service, repair, and retest names.",
+        root:"DNS/name-resolution failure.",
+        solution:"Restore a reachable DNS server or correct the DNS configuration, then renew/retest as appropriate.",
+        why:"DNS translates human-readable hostnames into IP addresses used for communication.",
+        concept:"DNS, DHCP-provided network settings, gateway testing, and isolating name resolution from general connectivity."
+      }
+    },
+    {
+      id:"TKT-1061", priority:"MEDIUM", level:"Level 2", department:"Sales", device:"Laptop",
+      title:"Laptop becomes extremely slow on battery power",
+      scenario:"A salesperson reports that the laptop runs normally when plugged in but becomes noticeably slow within seconds of disconnecting AC power. The laptop does not shut down and the battery lasts several hours.",
+      snapshot:[
+        ["Battery health","91% of original capacity"],["AC behavior","Normal performance"],["Battery behavior","Slow immediately after unplugging"],["Temperature","47°C during office work"]
+      ],
+      customer:[
+        ["Does the slowdown happen every time you unplug it?","Yes. It is almost immediate."],
+        ["Does the battery drain unusually fast?","No. Battery life seems normal."],
+        ["Does it feel hot when it slows down?","No. The fan is quiet and the laptop is not hot."]
+      ],
+      diagnostics:[
+        ["Check active power mode on battery","Battery mode is set to Best power efficiency."],
+        ["Inspect processor behavior","CPU frequency drops to about 0.8 GHz on battery and returns above 3 GHz on AC."],
+        ["Review advanced power settings","Maximum processor state on battery is set to 35%."],
+        ["Run battery health report","Battery health is good and no replacement warning is present."],
+        ["Check temperature under light load","CPU remains near 47°C; no thermal throttling is detected."],
+        ["Check memory usage","8.6 GB of 16 GB is used; no memory pressure warning."]
+      ],
+      hints:[
+        "The symptom changes immediately when the power source changes, while temperature and battery health are normal.",
+        "Look for a setting that intentionally limits performance while on battery."
+      ],
+      decisions:[
+        {q:"What information should you compare first?",choices:[
+          ["Performance/power settings on AC power versus battery power",1,"The symptom follows the power source, so comparing those policies is directly relevant."],
+          ["Printer queue status",0,"Printing is unrelated to the laptop-wide slowdown."],
+          ["Default gateway settings",0,"The report is performance-related, not connectivity-related."],
+          ["Monitor input source",0,"This does not explain system performance changing with AC power."]
+        ]},
+        {q:"The CPU drops to 0.8 GHz because maximum processor state on battery is 35%. What is the root cause?",choices:[
+          ["An overly restrictive battery power plan",1,"The setting directly explains the immediate CPU performance reduction."],
+          ["A failing battery cell",0,"Battery health and runtime are normal; the performance cap is visible in settings."],
+          ["CPU overheating",0,"Temperatures are normal and the slowdown begins immediately when unplugged."],
+          ["Insufficient storage space",0,"No storage symptom is provided and the power-state behavior is more specific."]
+        ]},
+        {q:"What is the best corrective action?",choices:[
+          ["Adjust the battery power mode/processor limit to an appropriate balanced setting",1,"This removes the unintended performance cap while still allowing power management."],
+          ["Replace the motherboard",0,"There is no hardware failure evidence."],
+          ["Disable Wi-Fi",0,"That would not correct CPU frequency throttling from the power plan."],
+          ["Replace the display",0,"The display is not causing the performance issue."]
+        ]},
+        {q:"How should you verify the fix?",choices:[
+          ["Unplug AC power, repeat the normal workload, and confirm responsive performance without abnormal battery drain",1,"Verification should reproduce the condition and confirm the new setting behaves appropriately."],
+          ["Only check performance while plugged in",0,"The original problem occurred specifically on battery power."],
+          ["Ping the router",0,"That does not test the performance setting."],
+          ["Turn the screen brightness to maximum",0,"Brightness does not verify CPU performance."]
+        ]}
+      ],
+      skills:["Hardware Troubleshooting","Mobile Connectivity","Problem Solving","Troubleshooting Methodology","Verification","Documentation"],
+      review:{
+        happened:"The laptop was normal on AC power but slowed immediately on battery despite good battery health and normal temperature.",
+        noticed:"CPU frequency dropped sharply and the battery power plan limited maximum processor state to 35%.",
+        process:"Compare AC vs battery behavior, inspect power mode, verify CPU frequency, rule out thermal/battery faults, correct the policy, and retest unplugged.",
+        root:"An overly restrictive battery power/performance configuration.",
+        solution:"Set an appropriate balanced battery power mode and processor limit based on company policy.",
+        why:"The power plan was intentionally restricting CPU performance whenever the laptop switched to battery.",
+        concept:"Laptop power management, battery behavior, performance troubleshooting, and avoiding unnecessary hardware replacement."
+      }
+    },
+    {
+      id:"TKT-1068", priority:"MEDIUM", level:"Level 2", department:"Operations", device:"Network printer",
+      title:"One employee cannot print to a shared printer",
+      scenario:"Several employees are printing to the department printer successfully. One operations employee can see the printer, but every new document remains in the local queue and never prints.",
+      snapshot:[
+        ["Printer","OPS-LASER-02"],["Printer IP","10.40.5.25"],["Other users","Printing successfully"],["Affected PC","Printer shows Ready"]
+      ],
+      customer:[
+        ["Can other users print right now?","Yes. The person next to me just printed a page."],
+        ["Did this computer print successfully before?","Yes, yesterday."],
+        ["What happens to your jobs?","They stay in my print queue and do not leave."]
+      ],
+      diagnostics:[
+        ["Ping printer IP from affected PC","Reply received from 10.40.5.25."],
+        ["Open local print queue","Three jobs are waiting; the oldest job shows Error and the queue is paused."],
+        ["Check printer hardware panel","Printer shows Ready; paper and toner are available."],
+        ["Compare with another user","Another employee prints a test page successfully."],
+        ["Check installed printer driver","Correct current driver is installed for OPS-LASER-02."],
+        ["Check network adapter status","Affected PC has normal network access."]
+      ],
+      hints:[
+        "The printer itself is working for other employees and the affected PC can reach its IP address.",
+        "Look at the place where this one user's jobs are stopping before they ever reach the printer."
+      ],
+      decisions:[
+        {q:"What does successful printing from other employees suggest?",choices:[
+          ["The printer hardware and shared network path are probably working",1,"This narrows the issue toward the affected user's local configuration or queue."],
+          ["The printer must be out of toner",0,"Other users are printing successfully."],
+          ["The entire switch has failed",0,"A switch failure would affect more devices than one user's print queue."],
+          ["The office DNS server is definitely down",0,"Nothing here indicates a name-resolution issue."]
+        ]},
+        {q:"The affected PC can ping the printer and the queue is paused with an error job. What should you do next?",choices:[
+          ["Remove the failed job if appropriate, resume the queue, and retry a test page",1,"This directly addresses the point where jobs are stuck."],
+          ["Replace the printer",0,"The printer is working for others."],
+          ["Replace the network switch",0,"Network reachability is already confirmed."],
+          ["Change the laptop battery",0,"Battery condition is unrelated to printing."]
+        ]},
+        {q:"What best verifies the resolution?",choices:[
+          ["Send a new test page from the affected PC and confirm the job leaves the queue and prints",1,"This validates the full path from the user's application through the printer."],
+          ["Only confirm the printer says Ready",0,"It already said Ready while the user's jobs were stuck."],
+          ["Only ping the printer again",0,"Ping verifies connectivity, not successful printing."],
+          ["Ask another user to print again",0,"The repair must be verified from the affected workstation."]
+        ]}
+      ],
+      skills:["Hardware Troubleshooting","Networking","Problem Solving","Troubleshooting Methodology","Verification","Documentation"],
+      review:{
+        happened:"One user's jobs stayed in the local queue while other employees continued printing normally.",
+        noticed:"The printer was reachable and healthy; the affected user's queue was paused with a failed job.",
+        process:"Confirm scope, verify printer health, test reachability, inspect the affected queue/driver, clear the local blockage, and print a new test page.",
+        root:"A paused local print queue with a failed job blocking the affected user.",
+        solution:"Clear the failed job as appropriate, resume the queue, and submit a fresh test page.",
+        why:"The printer and network were functioning; the failure was in the affected workstation's local job flow.",
+        concept:"Printer connectivity, print queues, isolating single-user issues, and verification."
+      }
+    },
+    {
+      id:"TKT-1072", priority:"HIGH", level:"Level 3", department:"Guest Services", device:"Laptop",
+      title:"Laptop sees company Wi-Fi but repeatedly fails to connect",
+      scenario:"A laptop shows the Northstar-Staff wireless network with strong signal, but the connection fails during authentication. Other employees nearby are connected.",
+      snapshot:[
+        ["SSID","Northstar-Staff"],["Signal strength","88%"],["Security","WPA3-Personal"],["Wireless adapter","Enabled; driver loaded"]
+      ],
+      customer:[
+        ["Can you see the network consistently?","Yes. It always appears with strong signal."],
+        ["Can you connect to another wireless network?","Yes. My phone hotspot works."],
+        ["Did the company Wi-Fi password change?","IT changed it yesterday afternoon."]
+      ],
+      diagnostics:[
+        ["Review authentication event","Authentication failed: credentials rejected."],
+        ["Inspect saved wireless profile","The laptop has an existing Northstar-Staff profile saved before yesterday's password change."],
+        ["Test wireless adapter on phone hotspot","Laptop connects to the phone hotspot successfully."],
+        ["Check signal near access point","Signal remains 88%; no significant interference reported."],
+        ["Check other users","Three nearby users are connected to Northstar-Staff successfully."],
+        ["Verify SSID security type","Access point is using WPA3-Personal as expected."]
+      ],
+      hints:[
+        "The adapter can join another wireless network and the signal is strong. What part of the connection process is failing?",
+        "The network password changed after this laptop's current saved profile was created."
+      ],
+      decisions:[
+        {q:"What does successful connection to a phone hotspot tell you?",choices:[
+          ["The laptop's wireless adapter can function",1,"That makes a complete adapter failure less likely."],
+          ["The company access point is definitely broken",0,"Other users are connected successfully."],
+          ["The laptop's RAM is faulty",0,"Wireless authentication is not explained by RAM capacity."],
+          ["The wired switch is offline",0,"This incident concerns Wi-Fi authentication."]
+        ]},
+        {q:"Authentication fails and the company password changed yesterday. What is the best next action?",choices:[
+          ["Forget the saved Northstar-Staff profile and reconnect using the current credentials",1,"This refreshes the saved authentication information."],
+          ["Replace the wireless card",0,"The adapter works on another network."],
+          ["Move the laptop closer to the access point",0,"Signal is already strong and the failure is credential-related."],
+          ["Reinstall the operating system",0,"That is excessive and not supported by the evidence."]
+        ]},
+        {q:"What should you verify after reconnecting?",choices:[
+          ["Confirm stable Wi-Fi association, valid IP settings, gateway access, and normal website access",1,"This verifies the connection beyond merely accepting the password."],
+          ["Only confirm the SSID appears in the list",0,"Seeing the SSID does not prove authentication or network access."],
+          ["Only check screen brightness",0,"Brightness is unrelated."],
+          ["Only confirm Bluetooth is enabled",0,"Bluetooth is not the Wi-Fi connection being repaired."]
+        ]}
+      ],
+      skills:["Networking","Mobile Connectivity","Problem Solving","Critical Thinking","Troubleshooting Methodology","Verification","Documentation"],
+      review:{
+        happened:"The laptop saw the wireless network with strong signal but failed at authentication.",
+        noticed:"The adapter worked on another network, other users were connected, and the company password changed after the saved profile was created.",
+        process:"Confirm signal and adapter status, compare scope, test another network, inspect the authentication result, refresh saved credentials, then verify IP and Internet access.",
+        root:"Outdated saved credentials after the wireless password changed.",
+        solution:"Forget the old profile and reconnect to Northstar-Staff using the current WPA3-Personal credentials.",
+        why:"The laptop was repeatedly presenting credentials that the access point no longer accepted.",
+        concept:"Wi-Fi, wireless security, authentication, adapter testing, and separating signal problems from credential problems."
+      }
+    },
+    {
+      id:"TKT-1077", priority:"LOW", level:"Level 3", department:"Field Marketing", device:"Laptop + company phone",
+      title:"Employee needs laptop Internet where no Wi-Fi is available",
+      scenario:"A field employee is at an event venue with no usable Wi-Fi. The company phone has a strong 5G cellular connection, and the employee needs temporary Internet access on the laptop to upload a presentation.",
+      snapshot:[
+        ["Laptop Wi-Fi","Enabled"],["Venue Wi-Fi","Unavailable"],["Company phone","5G connected"],["Bluetooth","Available on both devices"]
+      ],
+      customer:[
+        ["How long do you need the connection?","About 20 minutes to upload and confirm the files."],
+        ["Does the company phone have cellular data?","Yes. The phone is online using 5G."],
+        ["Is there an Ethernet jack nearby?","No."]
+      ],
+      diagnostics:[
+        ["Check phone hotspot capability","Mobile hotspot is available and allowed by company policy."],
+        ["Check cellular signal","5G signal is strong and the phone can browse normally."],
+        ["Check laptop Wi-Fi adapter","Laptop Wi-Fi is enabled and functional."],
+        ["Check Bluetooth support","Both devices support Bluetooth, but Wi-Fi hotspot offers the better temporary data connection for this task."],
+        ["Check data policy","Company plan permits business tethering for temporary field use."],
+        ["Check cable options","No wired network connection is available at the venue."]
+      ],
+      hints:[
+        "One device already has an Internet path through the cellular network. How can it share that connection with the laptop?",
+        "Think about tethering or a mobile hotspot rather than a local office network."
+      ],
+      decisions:[
+        {q:"What is the most appropriate way to give the laptop temporary Internet access?",choices:[
+          ["Enable the approved mobile hotspot on the company phone and connect the laptop to it",1,"The phone can share its cellular data connection with the laptop."],
+          ["Pair a Bluetooth mouse",0,"Bluetooth can connect peripherals, but that does not by itself provide the needed Internet path."],
+          ["Assign the laptop a random private IP address",0,"An IP address alone does not create upstream Internet connectivity."],
+          ["Install a second operating system",0,"Virtualization is unrelated to the connectivity need."]
+        ]},
+        {q:"Why is a mobile hotspot appropriate here?",choices:[
+          ["It shares the phone's cellular Internet connection with another device over a local connection",1,"That is the purpose of tethering/mobile hotspot functionality."],
+          ["It converts Bluetooth into Ethernet",0,"That is not what a hotspot does."],
+          ["It replaces the laptop's operating system",0,"A hotspot does not change the OS."],
+          ["It increases the laptop's RAM",0,"It does not change hardware capacity."]
+        ]},
+        {q:"What should you verify before closing the ticket?",choices:[
+          ["Confirm the laptop joins the hotspot, receives network settings, reaches the Internet, and completes the required upload",1,"This proves the temporary solution works for the actual task."],
+          ["Only confirm the phone shows 5G",0,"The laptop still needs to be tested through the shared connection."],
+          ["Only enable Bluetooth",0,"Bluetooth status alone does not verify Internet access."],
+          ["Restart the printer",0,"There is no printer issue in this ticket."]
+        ]}
+      ],
+      skills:["Mobile Connectivity","Networking","Cloud","Problem Solving","Verification","Documentation"],
+      review:{
+        happened:"The employee had no venue Wi-Fi, but the company phone had working 5G cellular data.",
+        noticed:"The phone supported an approved mobile hotspot and the laptop had functioning Wi-Fi.",
+        process:"Confirm the phone's cellular connection, verify tethering is allowed, enable hotspot, connect the laptop, and verify the required cloud/file task.",
+        root:"No local Internet service was available to the laptop at the venue.",
+        solution:"Use the company phone's approved mobile hotspot/tethering feature temporarily.",
+        why:"Tethering shares the phone's cellular Internet path with another device.",
+        concept:"Cellular connectivity, mobile hotspots/tethering, Wi-Fi vs Bluetooth roles, and field connectivity."
+      }
+    },
+    {
+      id:"TKT-1083", priority:"MEDIUM", level:"Level 3", department:"Development", device:"Developer workstation",
+      title:"Developer needs a second operating system without removing the current one",
+      scenario:"A developer must test an application on a second operating system while keeping the existing operating system and development tools intact on the workstation.",
+      snapshot:[
+        ["Host workstation","8-core CPU, 32 GB RAM, 1 TB SSD"],["Current OS","Installed and must remain in place"],["Test OS","Needed temporarily"],["BIOS/UEFI","CPU virtualization support available"]
+      ],
+      customer:[
+        ["Do you need both environments available?","Yes. I need my normal desktop and the test OS during the same workday."],
+        ["Is the test environment permanent?","No. It is mainly for application testing."],
+        ["Can the workstation resources be shared?","Yes, as long as the main system stays usable."]
+      ],
+      diagnostics:[
+        ["Check CPU virtualization capability","Hardware virtualization is supported and enabled."],
+        ["Check available memory","About 20 GB of RAM is typically available before starting the test environment."],
+        ["Check free storage","420 GB free on the SSD."],
+        ["Review CPU headroom","Normal workload uses about 25% CPU before testing."],
+        ["Check current OS stability","Host operating system is stable and up to date."],
+        ["Review test needs","Developer needs isolated OS testing without repartitioning or replacing the host OS."]
+      ],
+      hints:[
+        "The developer needs another OS environment while keeping the current OS available on the same physical computer.",
+        "Think of a software layer that creates and runs virtual computers using host CPU, memory, and storage."
+      ],
+      decisions:[
+        {q:"Which approach best meets the requirement?",choices:[
+          ["Create a virtual machine using a hypervisor",1,"A VM can run a second OS while the existing host OS remains installed."],
+          ["Replace the current OS with the test OS",0,"That would remove the environment the developer must keep."],
+          ["Connect to a printer with Bluetooth",0,"That does not provide a second OS environment."],
+          ["Change the default gateway",0,"Networking settings do not create an additional operating system."]
+        ]},
+        {q:"In this setup, what is the host operating system?",choices:[
+          ["The operating system already running directly on the physical workstation",1,"The host OS provides the environment in which the hosted hypervisor/VM runs."],
+          ["The operating system installed inside the virtual machine",0,"That is the guest OS."],
+          ["The firmware on the wireless access point",0,"That is unrelated to host/guest virtualization roles."],
+          ["The printer's embedded software",0,"That is not the virtualization host."]
+        ]},
+        {q:"What resources must the virtual machine receive from the physical host?",choices:[
+          ["CPU time, RAM, storage, and appropriate virtualized devices/network access",1,"A VM consumes allocated physical host resources through the hypervisor."],
+          ["Only monitor brightness",0,"Brightness is not a VM compute resource."],
+          ["Only a DNS hostname",0,"A hostname alone does not run an operating system."],
+          ["Only printer toner",0,"Printer consumables are unrelated."]
+        ]},
+        {q:"What should be verified after creating the VM?",choices:[
+          ["The guest OS boots, has the required resources/connectivity, and the host remains responsive",1,"This verifies both the test environment and impact on the physical host."],
+          ["Only the host wallpaper loads",0,"That does not verify the guest environment."],
+          ["Only the physical monitor powers on",0,"Display power does not confirm VM functionality."],
+          ["Only the printer is reachable",0,"The VM requirement is broader than printing."]
+        ]}
+      ],
+      skills:["Virtualization","Hardware Troubleshooting","Networking","Problem Solving","Critical Thinking","Verification","Documentation"],
+      review:{
+        happened:"A developer needed a second OS for testing while preserving the existing workstation environment.",
+        noticed:"The workstation had virtualization support and sufficient CPU, RAM, and storage headroom.",
+        process:"Confirm requirements, verify host capacity and virtualization support, create a VM, allocate resources, install the guest OS, and verify host/guest usability.",
+        root:"This was a workload/isolation requirement rather than a hardware fault.",
+        solution:"Run the test operating system as a virtual machine using a hypervisor.",
+        why:"Virtualization allows multiple isolated operating system environments to share one physical host.",
+        concept:"Virtual machines, hypervisors, host vs guest OS, and physical resource allocation."
+      }
+    },
+    {
+      id:"TKT-1090", priority:"MEDIUM", level:"Level 3", department:"Leadership", device:"Shared file service",
+      title:"Company needs shared files across locations without another physical file server",
+      scenario:"Northstar is opening a small remote office. Leadership wants employees in both locations to access shared files securely without purchasing and maintaining another physical file server at the new site.",
+      snapshot:[
+        ["Users","55 employees across two locations"],["Need","Shared business files"],["Remote access","Required"],["New server hardware","Leadership wants to avoid it"]
+      ],
+      customer:[
+        ["Do users need access outside the main office?","Yes. Remote and traveling employees also need access."],
+        ["Does the company want to maintain new server hardware?","No. That is what we are trying to avoid."],
+        ["Do files need controlled user access?","Yes. Access should be based on employee permissions."]
+      ],
+      diagnostics:[
+        ["Review Internet availability","Both office locations have reliable business Internet access."],
+        ["Review storage requirement","Shared department files total about 650 GB and are growing."],
+        ["Review collaboration need","Users need browser/client access and synchronized shared folders."],
+        ["Review physical server requirement","No specialized local application requires a new on-site file server."],
+        ["Review access model","IT can manage user accounts and permissions centrally."],
+        ["Review backup expectation","Leadership wants provider-supported redundancy plus the company's own retention policy."]
+      ],
+      hints:[
+        "The goal is shared remote file access without maintaining another physical server at the new office.",
+        "Consider a service that provides storage over the Internet and can be accessed from multiple locations."
+      ],
+      decisions:[
+        {q:"Which solution best matches the business requirement?",choices:[
+          ["Use an approved cloud storage/file-sharing service",1,"Cloud storage supports shared remote access without adding another physical file server at the branch."],
+          ["Install a new local file server at every location",0,"That directly conflicts with the stated goal."],
+          ["Store the files only on one employee laptop",0,"That is not an appropriate shared business storage model."],
+          ["Use Bluetooth between offices",0,"Bluetooth is a short-range local technology and cannot serve multi-location file access."]
+        ]},
+        {q:"Why is this approach appropriate?",choices:[
+          ["It provides centrally managed remote access to shared storage without maintaining a branch file server",1,"That directly addresses the access and infrastructure requirements."],
+          ["It removes the need for Internet access",0,"Cloud services require network connectivity."],
+          ["It guarantees every user should have every file permission",0,"Permissions still need to be configured appropriately."],
+          ["It upgrades workstation RAM automatically",0,"Cloud storage does not change client hardware memory."]
+        ]},
+        {q:"What should IT verify during rollout?",choices:[
+          ["User authentication, file permissions, sync/access from both locations, and recovery/retention expectations",1,"A usable cloud rollout requires access control and functional verification, not just account creation."],
+          ["Only that the provider has a logo",0,"Branding does not verify technical requirements."],
+          ["Only that one administrator can log in",0,"The solution must work for intended users and permissions."],
+          ["Only that the office printer is online",0,"Printing does not validate the shared-file solution."]
+        ]}
+      ],
+      skills:["Cloud","Networking","Problem Solving","Critical Thinking","Verification","Documentation"],
+      review:{
+        happened:"The company needed shared file access across locations but did not want another physical branch server.",
+        noticed:"Both offices had reliable Internet, remote access was required, and centrally managed permissions were important.",
+        process:"Clarify access, storage, security, and recovery needs; compare local vs cloud approaches; select the service model; configure permissions; and test from multiple locations.",
+        root:"This was an infrastructure/access requirement, not a broken device.",
+        solution:"Deploy an approved cloud file storage/sharing service with appropriate permissions and retention controls.",
+        why:"Cloud storage makes files available through network-based services without requiring Northstar to maintain another physical branch file server.",
+        concept:"Cloud storage, shared services, remote access, permissions, and business requirement analysis."
+      }
+    },
+    {
+      id:"TKT-1104", priority:"HIGH", level:"Level 4", department:"New Hire Setup", device:"New workstation",
+      title:"New workstation cannot access shared files, printer, or Internet",
+      scenario:"A newly installed workstation powers on normally, but the employee cannot access company shared files, the department printer, or the Internet. The desk is in a newly renovated row of cubicles.",
+      snapshot:[
+        ["NIC","Enabled"],["IPv4 address","169.254.77.18"],["Subnet mask","255.255.0.0"],["Default gateway","None"]
+      ],
+      customer:[
+        ["Has this workstation ever connected at this desk?","No. It was installed here this morning."],
+        ["Are other employees online?","Yes, including the workstation at the next desk."],
+        ["Is the Ethernet cable connected?","Yes, it clicks into the workstation and wall jack."]
+      ],
+      diagnostics:[
+        ["Check NIC status","Adapter is enabled; no hardware error is shown."],
+        ["Inspect link lights","No link light appears on the workstation NIC."],
+        ["Test the workstation cable on a known-good active wall jack","The same cable and workstation immediately show link on the known-good jack."],
+        ["Test another known-good cable at the problem wall jack","No link light appears at the problem wall jack."],
+        ["Check switch-side documentation","The renovated desk's wall jack maps to switch port 18, which is currently administratively disabled."],
+        ["After enabling/moving to an active port, renew DHCP","Workstation receives 10.50.8.84/24, gateway 10.50.8.1, DNS 10.50.8.53."],
+        ["Ping default gateway after link is restored","Reply received from 10.50.8.1."],
+        ["Test DNS and Internet after DHCP lease","Hostname resolves and the company website loads."]
+      ],
+      hints:[
+        "The 169.254.x.x address is a clue that the workstation did not receive its normal network configuration. Start at the physical connection before changing IP settings.",
+        "The workstation and cable work on a known-good jack, but multiple cables fail on this wall jack. Where does that point next?"
+      ],
+      decisions:[
+        {q:"The workstation has 169.254.77.18 and no gateway. What should you investigate first?",choices:[
+          ["Physical link: NIC, cable, wall jack, and switch port",1,"Before changing higher-layer settings, verify that the workstation has an active network path."],
+          ["Replace RAM",0,"RAM does not explain the lack of link and self-assigned address."],
+          ["Change the monitor input",0,"The workstation display is not the reported issue."],
+          ["Configure a random static gateway",0,"That could mask the real problem and is not evidence-based."]
+        ]},
+        {q:"There is no NIC link light. What is the best next test?",choices:[
+          ["Test the current workstation/cable on a known-good network jack",1,"This helps isolate whether the fault follows the device/cable or stays with the original jack/path."],
+          ["Change DNS servers",0,"DNS is irrelevant until the device has a working network link."],
+          ["Replace the SSD",0,"Storage does not create an Ethernet link."],
+          ["Install a virtual machine",0,"Virtualization does not fix the physical network path."]
+        ]},
+        {q:"The workstation and cable work on another jack, and a known-good cable still fails on the original jack. What is the best theory?",choices:[
+          ["The original wall-jack/switch-port path is inactive",1,"The fault stays with the original network path rather than the workstation or cable."],
+          ["The workstation NIC is defective",0,"The NIC produced a link and worked on the known-good jack."],
+          ["The workstation has the wrong DNS suffix",0,"DNS settings cannot prevent the physical link light."],
+          ["The monitor is faulty",0,"Display hardware is unrelated."]
+        ]},
+        {q:"Documentation shows the mapped switch port is disabled. What is the correct action?",choices:[
+          ["Enable the approved switch port or move the drop to an approved active port, then renew DHCP",1,"This restores physical/network access and allows normal automatic addressing."],
+          ["Assign 169.254.77.18 as a permanent static IP",0,"A self-assigned address is not the correct corporate configuration."],
+          ["Replace the workstation motherboard",0,"The workstation works on a known-good port."],
+          ["Disable the NIC",0,"That would prevent networking entirely."]
+        ]},
+        {q:"After the workstation receives 10.50.8.84 with a gateway and DNS server, what should you verify?",choices:[
+          ["Gateway reachability, name resolution, shared files, printer access, and Internet access",1,"The original ticket involved multiple services, so all affected functions should be verified."],
+          ["Only the IP address",0,"A valid IP is necessary but does not prove the reported services work."],
+          ["Only the printer display panel",0,"The user also needs files and Internet access."],
+          ["Only CPU temperature",0,"This is not a thermal incident."]
+        ]}
+      ],
+      skills:["Networking","Problem Solving","Critical Thinking","Troubleshooting Methodology","Verification","Documentation"],
+      review:{
+        happened:"The new workstation had no access to any network service and self-assigned a 169.254.x.x address.",
+        noticed:"There was no link light, the workstation/cable worked elsewhere, and the original wall-jack path stayed dead with a known-good cable.",
+        process:"Start at physical link, isolate device/cable vs jack, map the jack to the switch, restore the approved switch port, renew DHCP, then test gateway, DNS, files, printer, and Internet.",
+        root:"The renovated desk's switch port was disabled, preventing link and DHCP communication.",
+        solution:"Activate the approved switch port/path and renew the workstation's DHCP configuration.",
+        why:"Without an active Ethernet path, the workstation could not contact DHCP or any other network service.",
+        concept:"Ethernet, NICs, switches, DHCP, APIPA/self-assigned addressing, gateway/DNS verification, and systematic network troubleshooting."
+      }
+    },
+    {
+      id:"TKT-1201", priority:"CRITICAL", level:"Final Challenge", department:"Design", device:"New graphics workstation",
+      title:"New workstation has performance, display, network, and cloud access complaints",
+      scenario:"A graphic designer received a new workstation this morning. During setup, they report that large projects run slowly, the second monitor has no image, network access drops intermittently, and the company cloud drive opens but shows “Access denied” for the Design Team folder.",
+      snapshot:[
+        ["Ordered memory","32 GB (2 × 16 GB)"],["Detected memory","16 GB"],["Graphics","Dedicated GPU installed"],["Second monitor cable","Connected to motherboard video output"],
+        ["Network","Ethernet link alternates between connected/disconnected"],["Cloud portal","Loads successfully; Design Team folder denied"]
+      ],
+      customer:[
+        ["Did all four symptoms start with this new workstation?","Yes. This is the first day using it."],
+        ["Does the cloud portal itself open?","Yes. I can sign in and see my personal folder, but not the Design Team folder."],
+        ["When does network access drop?","It drops if the desk or Ethernet cable is bumped."],
+        ["Was the second display cable connected during setup?","Yes. I plugged it into the video port near the USB ports on the motherboard panel."]
+      ],
+      diagnostics:[
+        ["Check installed/detected memory","Two 16 GB DIMMs are physically present, but firmware and the OS detect only 16 GB."],
+        ["Reseat/test memory modules","One DIMM was not fully seated. After reseating, 32 GB is detected and memory test passes."],
+        ["Check application resource use","Before memory correction, large projects cause heavy paging and high storage activity."],
+        ["Inspect monitor connections","Primary monitor is connected to the dedicated GPU; second monitor is connected to the motherboard video output."],
+        ["Move second monitor to GPU","Second monitor immediately displays correctly when connected to an available GPU DisplayPort output."],
+        ["Inspect Ethernet cable","RJ45 locking tab is broken; link drops when the cable shifts."],
+        ["Test with known-good Ethernet cable","Link remains stable at 1 Gbps and DHCP settings remain valid."],
+        ["Test gateway/DNS after cable replacement","Gateway responds; company and external names resolve normally."],
+        ["Check cloud service reachability","Cloud portal loads and other permitted folders open after network is stable."],
+        ["Check Design Team folder permissions","User account is not yet a member of the Design Team cloud access group."],
+        ["After approved permission update","Design Team folder opens and files sync successfully."]
+      ],
+      hints:[
+        "Treat each symptom as evidence, but look for the simplest supported cause for each one. Do not assume one failure explains everything.",
+        "Compare ordered vs detected memory, trace each monitor cable to its actual video source, physically test the unstable Ethernet path, and separate cloud reachability from cloud authorization."
+      ],
+      decisions:[
+        {q:"Large projects are slow and only 16 GB of the installed 32 GB is detected. What should you investigate first?",choices:[
+          ["DIMM seating/detection and memory test",1,"The system is missing half of the installed memory, which directly affects available resources."],
+          ["Replace the CPU immediately",0,"The detected-memory mismatch is more specific evidence."],
+          ["Change DNS",0,"DNS does not change installed memory capacity."],
+          ["Replace the second monitor",0,"That would not address the performance symptom."]
+        ]},
+        {q:"One DIMM was not fully seated. After reseating, 32 GB is detected and the memory test passes. What should you do next for the performance complaint?",choices:[
+          ["Repeat the same large-project workload and compare responsiveness/paging",1,"Verification should reproduce the original performance condition."],
+          ["Stop because firmware now shows 32 GB",0,"The end-user workload still needs to be verified."],
+          ["Disable half the CPU cores",0,"That would reduce performance and is not supported."],
+          ["Change the printer IP",0,"Printing is unrelated."]
+        ]},
+        {q:"The second monitor is connected to the motherboard video output while the primary uses the dedicated GPU. What is the best next action?",choices:[
+          ["Connect the second monitor to an available output on the dedicated GPU",1,"With a dedicated GPU handling displays, both monitors should use the active graphics outputs unless the system is intentionally configured otherwise."],
+          ["Replace system RAM again",0,"The display path is the more direct issue."],
+          ["Assign a static IP to the monitor",0,"A normal display signal does not depend on an IP address."],
+          ["Enable mobile hotspot",0,"That does not restore the local display signal."]
+        ]},
+        {q:"Ethernet drops whenever the desk or cable is bumped. What should you test before changing IP settings?",choices:[
+          ["Inspect the Ethernet cable/connector and substitute a known-good cable",1,"An intermittent physical link that reacts to movement should be tested at the physical layer first."],
+          ["Change the DNS server",0,"DNS cannot cause the link itself to drop when a cable is moved."],
+          ["Replace the SSD",0,"Storage is unrelated to Ethernet link stability."],
+          ["Create a virtual machine",0,"Virtualization does not fix a physical cable fault."]
+        ]},
+        {q:"A known-good Ethernet cable keeps link stable at 1 Gbps and gateway/DNS tests pass. What is the root cause of the network drops?",choices:[
+          ["Damaged Ethernet cable/locking connector",1,"The symptom followed the original cable and disappears with a known-good replacement."],
+          ["DHCP server failure",0,"The workstation keeps valid settings and works normally after the cable replacement."],
+          ["DNS server failure",0,"DNS tests pass once the physical link is stable."],
+          ["Wireless password mismatch",0,"The workstation is using Ethernet in this scenario."]
+        ]},
+        {q:"The cloud portal loads and permitted folders open, but the Design Team folder says Access denied. What should you investigate?",choices:[
+          ["User/group permissions for the Design Team folder",1,"The service is reachable; the failure is specific to authorization for one protected resource."],
+          ["Replace the Ethernet NIC",0,"Network reachability is already verified."],
+          ["Change the monitor input",0,"Display configuration does not determine cloud permissions."],
+          ["Replace the CPU cooler",0,"Thermal components do not control cloud access rights."]
+        ]},
+        {q:"After the approved access-group change, what is the most complete final verification?",choices:[
+          ["Re-test the design workload, both monitors, stable network access, cloud folder access/sync, and document all fixes",1,"The final ticket contains multiple symptoms, so every repaired function must be verified and documented."],
+          ["Only confirm the cloud folder opens",0,"That leaves the performance, display, and network fixes unverified."],
+          ["Only confirm the monitor works",0,"The ticket had several independent complaints."],
+          ["Only confirm 32 GB RAM is detected",0,"That does not verify the other resolved issues."]
+        ]}
+      ],
+      skills:["Hardware Troubleshooting","Networking","Cloud","Problem Solving","Critical Thinking","Troubleshooting Methodology","Verification","Documentation"],
+      review:{
+        happened:"The new workstation had four separate setup issues: reduced memory, a misconnected display, unstable Ethernet, and missing cloud-folder authorization.",
+        noticed:"Only 16 of 32 GB was detected; the second display was connected to motherboard video; Ethernet dropped when the cable moved; the cloud service worked except for one protected folder.",
+        process:"Treat each symptom with evidence: verify memory detection, trace the display signal path, test the physical Ethernet link before changing IP settings, then distinguish cloud connectivity from permissions. After each fix, verify the original function.",
+        root:"Four root causes: an unseated DIMM, second monitor connected to the wrong video output, damaged Ethernet cable/locking tab, and missing Design Team cloud permission.",
+        solution:"Reseat the DIMM, connect both displays to the dedicated GPU, replace the damaged Ethernet cable, apply the approved cloud group permission, and retest all affected functions.",
+        why:"Each fix targets a specific evidence-supported cause instead of assuming one broad failure or replacing unrelated parts.",
+        concept:"Cumulative Core 1 troubleshooting: RAM, GPUs/displays, Ethernet/DHCP/DNS verification, cloud permissions, methodology, verification, and documentation."
+      }
+    }
+  ];
+
+  const reflectionQuestions = [
+    "Which problem was the hardest to diagnose and why?",
+    "Which information was most useful when troubleshooting?",
+    "Why is it important to identify the root cause instead of immediately replacing hardware?",
+    "Which Core 1 topic do you feel most confident applying?",
+    "Which area do you need more practice with?",
+    "How could the troubleshooting skills from this simulation apply to an actual IT support job?"
+  ];
+
+  const state = {
+    started:false,
+    active:null,
+    completed:{},
+    progress:{},
+    totalWrong:0,
+    totalHints:0,
+    startTime:null,
+    timer:null,
+    reflections:Array(6).fill(""),
+    reportOpen:false
+  };
+
+  function freshTicketProgress(){
+    return {status:"OPEN", step:0, wrong:0, hints:0, hintIndex:0, asked:{}, ran:{}, choiceOrder:{}, feedback:null, nextReady:false, note:"", score:null};
+  }
+  tickets.forEach(t => state.progress[t.id] = freshTicketProgress());
+
+  function priorityClass(p){ return p === "LOW" ? "p-low" : p === "MEDIUM" ? "p-medium" : p === "HIGH" ? "p-high" : "p-critical"; }
+  function statusClass(s){ return s === "RESOLVED" ? "status-done" : s === "IN PROGRESS" ? "status-progress" : "status-open"; }
+  function currentOverall(){
+    const completedScores = tickets.filter(t => state.completed[t.id]).map(t => state.progress[t.id].score);
+    if(!completedScores.length) return 100;
+    return Math.max(0, Math.round(completedScores.reduce((a,b)=>a+b,0)/completedScores.length));
+  }
+  function formatTime(sec){
+    const m = Math.floor(sec/60), s = sec%60;
+    return String(m).padStart(2,"0") + ":" + String(s).padStart(2,"0");
+  }
+  function elapsedSeconds(){ return state.startTime ? Math.max(0, Math.floor((Date.now()-state.startTime)/1000)) : 0; }
+  function updateMetrics(){
+    const resolved = Object.keys(state.completed).length;
+    $("#mResolved").textContent = resolved + " / " + tickets.length;
+    $("#mProgress").style.width = (resolved/tickets.length*100) + "%";
+    $("#mScore").textContent = currentOverall() + "%";
+    $("#mWrong").textContent = state.totalWrong;
+    $("#mHints").textContent = state.totalHints;
+    $("#mTime").textContent = formatTime(elapsedSeconds());
+    $("#finishBanner").classList.toggle("hidden", resolved !== tickets.length);
+    $("#reportBtn").classList.toggle("hidden", resolved !== tickets.length);
+  }
+  function renderQueue(){
+    const q = $("#ticketQueue");
+    q.innerHTML = tickets.map(t => {
+      const p = state.progress[t.id];
+      const active = state.active === t.id ? "active" : "";
+      const done = p.status === "RESOLVED" ? "done" : "";
+      return `<button type="button" class="ticket-item ${active} ${done}" data-ticket="${t.id}">
+        <div class="ticket-top"><span class="ticket-id">${t.id}</span><span class="priority ${priorityClass(t.priority)}">${t.priority}</span></div>
+        <div style="font-weight:700;font-size:13px;margin-bottom:4px;">${esc(t.department)}</div>
+        <div class="ticket-meta"><span>${esc(t.device)}</span><span>·</span><span>${esc(t.level)}</span></div>
+        <div class="status-line ${statusClass(p.status)}">${p.status}</div>
+      </button>`;
+    }).join("");
+    q.querySelectorAll("[data-ticket]").forEach(btn => btn.addEventListener("click", () => openTicket(btn.dataset.ticket)));
+  }
+
+  function startSimulation(){
+    state.started = true;
+    state.startTime = Date.now();
+    $("#welcomeView").classList.add("hidden");
+    $("#simulationView").classList.remove("hidden");
+    renderQueue();
+    updateMetrics();
+    if(state.timer) clearInterval(state.timer);
+    state.timer = setInterval(updateMetrics,1000);
+    openTicket(tickets[0].id);
+  }
+
+  function openTicket(id){
+    state.active = id;
+    state.reportOpen = false;
+    $("#reportView").classList.add("hidden");
+    $("#simulationView").classList.remove("hidden");
+    const p = state.progress[id];
+    if(p.status === "OPEN") p.status = "IN PROGRESS";
+    renderQueue();
+    renderTicket();
+  }
+
+  function workflowHTML(t,p){
+    if(!(t.level === "Level 4" || t.level === "Final Challenge")) return "";
+    const labels=["Identify","Gather","Theory","Test","Root cause","Implement","Verify","Document"];
+    const evidenceCount=Object.keys(p.asked).length+Object.keys(p.ran).length;
+    let current=0;
+    if(evidenceCount>=2) current=1;
+    if(p.step>0) current=Math.max(current,2);
+    if(p.step>1) current=Math.max(current,3);
+    if(p.step>2) current=Math.max(current,4);
+    if(p.step>3) current=Math.max(current,5);
+    if(p.step>=Math.max(1,t.decisions.length-1)) current=Math.max(current,6);
+    if(p.step>=t.decisions.length) current=7;
+    if(p.status==="RESOLVED") current=8;
+    const steps=labels.map((label,i)=>`<div class="workflow-step ${i<current?"done":i===current&&current<8?"active":""}">${i+1}. ${label}</div>`).join("");
+    return `<div class="workflow-strip"><strong>Technician troubleshooting workflow</strong><div class="workflow-steps">${steps}</div></div>`;
+  }
+
+  function actionSection(title, type, rows, usedMap){
+    const buttons = rows.map((row,i) => {
+      const used = !!usedMap[i];
+      return `<button type="button" class="tool-btn ${used?"used":""}" data-${type}="${i}" ${used?"disabled":""}>${esc(row[0])}</button>`;
+    }).join("");
+    const usedEntries = Object.keys(usedMap).filter(k=>usedMap[k]).map(k => {
+      const idx=Number(k); return `<div class="log-entry"><strong>${esc(rows[idx][0])}</strong>${esc(rows[idx][1])}</div>`;
+    }).join("");
+    return `<div class="section-card">
+      <div class="section-title"><strong>${title}</strong><span style="font-size:11px;color:#687786;">Gather information</span></div>
+      <div class="section-body"><div class="tool-grid">${buttons}</div><div class="results-log">${usedEntries}</div></div>
+    </div>`;
+  }
+
+  function renderDecision(t,p){
+    if(p.step >= t.decisions.length){
+      return `<div class="resolution-box">
+        <h3>Document the resolution</h3>
+        <div style="font-size:13px;color:#687786;margin-bottom:8px;">In 1–3 sentences, explain the evidence that supported your diagnosis, what you changed, and how you verified the result.</div>
+        <textarea id="resolutionNote" maxlength="700" placeholder="Example structure: Evidence → root cause → action → verification">${esc(p.note)}</textarea>
+        <div class="resolution-actions"><span class="char-note" id="charNote">Minimum 30 characters · ${p.note.length}/700</span><button type="button" class="primary-btn" id="resolveTicketBtn">Resolve Ticket</button></div>
+        <div id="resolutionFeedback"></div>
+      </div>`;
+    }
+    const d = t.decisions[p.step];
+    if(!p.choiceOrder[p.step]){
+      const order=d.choices.map((_,i)=>i);
+      for(let i=order.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [order[i],order[j]]=[order[j],order[i]]; }
+      p.choiceOrder[p.step]=order;
+    }
+    const choices = p.choiceOrder[p.step].map(i=>{ const c=d.choices[i]; return `<button type="button" class="choice-btn" data-choice="${i}">${esc(c[0])}</button>`; }).join("");
+    let fb = "";
+    if(p.feedback){
+      fb = `<div class="feedback ${p.feedback.good?"good":"bad"}">${esc(p.feedback.text)}</div>`;
+      if(p.nextReady) fb += `<div class="next-wrap"><button class="primary-btn" id="nextDecisionBtn" type="button">Continue Investigation</button></div>`;
+    }
+    return `<div class="section-card">
+      <div class="section-title"><strong>Troubleshooting Decision</strong><button type="button" class="secondary-btn" id="hintBtn" style="padding:7px 10px;">Hint</button></div>
+      <div class="section-body">
+        <div class="decision-box"><div class="decision-count">Decision ${p.step+1} of ${t.decisions.length}</div><h3>${esc(d.q)}</h3><div class="choices">${choices}</div>${fb}</div>
+        ${p.hintIndex>0 ? `<div class="hint-box"><strong>Hint ${p.hintIndex}:</strong> ${esc(t.hints[Math.min(p.hintIndex-1,t.hints.length-1)])}</div>` : ""}
+      </div>
+    </div>`;
+  }
+
+  function renderTicket(){
+    if(!state.active) return;
+    const t = tickets.find(x=>x.id===state.active), p=state.progress[t.id];
+    $("#emptyTicket").classList.add("hidden");
+    const c = $("#ticketContent");
+    c.classList.remove("hidden");
+    const snapshot = t.snapshot.map(r=>`<div class="snapshot-item"><span>${esc(r[0])}</span><strong>${esc(r[1])}</strong></div>`).join("");
+    const resolvedNotice = p.status === "RESOLVED" ? `<div class="finish-banner" style="margin-bottom:12px;"><div><strong>Ticket resolved · ${p.score}% ticket score</strong><div style="font-size:13px;color:#376b52;">You may review the evidence or select another ticket.</div></div></div>` : "";
+    c.innerHTML = `${resolvedNotice}<div class="case-header">
+      <div><div class="eyebrow" style="color:#1769aa;opacity:1;">${esc(t.id)} · ${esc(t.priority)} priority</div><h2>${esc(t.title)}</h2><div class="case-sub">${esc(t.department)} · ${esc(t.device)} · ${esc(p.status)}</div></div>
+      <span class="level-tag">${esc(t.level)}</span>
+    </div>
+    <div class="scenario">${esc(t.scenario)}</div>
+    <div class="snapshot">${snapshot}</div>
+    ${workflowHTML(t,p)}
+    ${actionSection("Ask the User", "ask", t.customer, p.asked)}
+    ${actionSection("Run Diagnostics", "diag", t.diagnostics, p.ran)}
+    ${p.status !== "RESOLVED" ? renderDecision(t,p) : `<div class="resolution-box"><h3>Your resolution note</h3><div style="font-size:13px;color:#334454;white-space:pre-wrap;">${esc(p.note)}</div></div>`}`;
+
+    c.querySelectorAll("[data-ask]").forEach(btn => btn.addEventListener("click",()=>{ p.asked[Number(btn.dataset.ask)] = true; renderTicket(); }));
+    c.querySelectorAll("[data-diag]").forEach(btn => btn.addEventListener("click",()=>{ p.ran[Number(btn.dataset.diag)] = true; renderTicket(); }));
+    c.querySelectorAll("[data-choice]").forEach(btn => btn.addEventListener("click",()=>handleChoice(Number(btn.dataset.choice))));
+    const next = $("#nextDecisionBtn"); if(next) next.addEventListener("click",()=>{ p.step++; p.feedback=null; p.nextReady=false; p.hintIndex=0; renderTicket(); });
+    const hint = $("#hintBtn"); if(hint) hint.addEventListener("click",useHint);
+    const ta = $("#resolutionNote");
+    if(ta){
+      ta.addEventListener("input",()=>{ p.note=ta.value; $("#charNote").textContent=`Minimum 30 characters · ${p.note.length}/700`; });
+      $("#resolveTicketBtn").addEventListener("click",resolveTicket);
+    }
+    c.scrollIntoView({behavior:"smooth",block:"start"});
+  }
+
+  function handleChoice(index){
+    const t=tickets.find(x=>x.id===state.active), p=state.progress[t.id], d=t.decisions[p.step], ch=d.choices[index];
+    if(p.nextReady) return;
+    if(ch[1]){
+      p.feedback={good:true,text:ch[2]}; p.nextReady=true;
+    }else{
+      p.wrong++; state.totalWrong++; p.feedback={good:false,text:ch[2] + " Use the evidence available and choose a better next step."}; p.nextReady=false;
+    }
+    updateMetrics(); renderTicket();
+  }
+
+  function useHint(){
+    const t=tickets.find(x=>x.id===state.active), p=state.progress[t.id];
+    if(p.hintIndex < t.hints.length){
+      p.hintIndex++; p.hints++; state.totalHints++; updateMetrics(); renderTicket();
+    } else {
+      p.feedback={good:false,text:"You have used the available hints for this ticket. Re-read the evidence and diagnostic results."};
+      renderTicket();
+    }
+  }
+
+  function resolveTicket(){
+    const t=tickets.find(x=>x.id===state.active), p=state.progress[t.id];
+    const ta=$("#resolutionNote");
+    p.note=ta ? ta.value.trim() : p.note.trim();
+    if(p.note.length < 30){
+      $("#resolutionFeedback").innerHTML='<div class="feedback bad">Add a little more technician documentation. Include the evidence, action, and verification you used.</div>';
+      return;
+    }
+    p.status="RESOLVED";
+    p.score=Math.max(50,100-(p.wrong*7)-(p.hints*4));
+    state.completed[t.id]=true;
+    updateMetrics(); renderQueue(); renderTicket();
+    const nextTicket=tickets.find(x=>!state.completed[x.id]);
+    if(nextTicket){
+      setTimeout(()=>openTicket(nextTicket.id),350);
+    }
+  }
+
+  function performanceLevel(score){
+    if(score>=90) return ["Excellent — Ready for advanced troubleshooting","You consistently used evidence, logical sequencing, verification, and documentation."];
+    if(score>=80) return ["Strong — Good Core 1 foundation","Your troubleshooting decisions show a solid foundation. Review the tickets where you needed extra attempts or hints."];
+    if(score>=70) return ["Developing — Review several troubleshooting areas","You are applying the workflow, but several areas would benefit from more practice before moving on."];
+    return ["Needs Practice — Revisit the Core 1 labs before attempting the simulation again","Use the answer review to identify where your diagnostic sequence broke down, then retry after review."];
+  }
+
+  function skillScores(){
+    const names=["Hardware Troubleshooting","Networking","Mobile Connectivity","Virtualization","Cloud","Problem Solving","Critical Thinking","Troubleshooting Methodology","Verification","Documentation"];
+    const out={};
+    names.forEach(name=>{
+      const related=tickets.filter(t=>t.skills.includes(name));
+      const scores=related.map(t=>state.progress[t.id].score || 0);
+      out[name]=scores.length?Math.round(scores.reduce((a,b)=>a+b,0)/scores.length):0;
+    });
+    return out;
+  }
+
+  function renderReport(tab="summary"){
+    state.reportOpen=true;
+    $("#simulationView").classList.add("hidden");
+    const rv=$("#reportView"); rv.classList.remove("hidden");
+    const score=currentOverall();
+    const [level,desc]=performanceLevel(score);
+    const skills=skillScores();
+    const skillCards=Object.entries(skills).map(([k,v])=>`<div class="skill-card"><div class="skill-top"><span>${esc(k)}</span><span>${v}%</span></div><div class="skill-bar"><div class="skill-fill" style="width:${v}%"></div></div></div>`).join("");
+    const totalDecisions=tickets.reduce((sum,t)=>sum+t.decisions.length,0);
+    const elapsed=formatTime(elapsedSeconds());
+    const reportSummary=`
+      <div class="report-hero">
+        <div class="score-ring" style="--scoreDeg:${score}%;"><div class="score-ring-inner"><div><b>${score}%</b><span>Overall</span></div></div></div>
+        <div><div class="eyebrow">A+ Core 1 Technician Performance Report</div><h2>${esc(level)}</h2><p>${esc(desc)}</p><p><strong>Northstar Creative Solutions</strong> · Junior IT Support Technician</p></div>
+      </div>
+      <div class="report-stats">
+        <div class="report-stat"><b>${tickets.length}</b><span>Tickets completed</span></div>
+        <div class="report-stat"><b>${tickets.filter(t=>state.progress[t.id].wrong===0).length}</b><span>Tickets solved with no wrong decisions</span></div>
+        <div class="report-stat"><b>${state.totalWrong}</b><span>Incorrect decisions</span></div>
+        <div class="report-stat"><b>${state.totalHints}</b><span>Hints used</span></div>
+        <div class="report-stat"><b>${elapsed}</b><span>Shift time</span></div>
+      </div>
+      <div class="panel"><div class="panel-head"><h3>Performance by Skill</h3><span style="font-size:12px;color:#687786;">${totalDecisions} troubleshooting decisions</span></div><div class="ticket-content"><div class="report-grid">${skillCards}</div></div></div>`;
+
+    const review = `<div class="review-list">${tickets.map(t=>`<details><summary>${t.id} — ${esc(t.title)}</summary><div class="review-body">
+      <p><strong>What happened:</strong> ${esc(t.review.happened)}</p>
+      <p><strong>What the student should have noticed:</strong> ${esc(t.review.noticed)}</p>
+      <p><strong>Correct diagnostic process:</strong> ${esc(t.review.process)}</p>
+      <p><strong>Root cause:</strong> ${esc(t.review.root)}</p>
+      <p><strong>Correct solution:</strong> ${esc(t.review.solution)}</p>
+      <p><strong>Why the solution works:</strong> ${esc(t.review.why)}</p>
+      <p><strong>A+ concept reinforced:</strong> ${esc(t.review.concept)}</p>
+      <p><strong>Your ticket score:</strong> ${state.progress[t.id].score}% &nbsp; · &nbsp; <strong>Wrong decisions:</strong> ${state.progress[t.id].wrong} &nbsp; · &nbsp; <strong>Hints:</strong> ${state.progress[t.id].hints}</p>
+      <p><strong>Your documentation:</strong> ${esc(state.progress[t.id].note)}</p>
+    </div></details>`).join("")}</div>`;
+
+    const reflection = `<div class="reflection-grid">${reflectionQuestions.map((q,i)=>`<div class="reflection-item"><label for="refl${i}">${i+1}. ${esc(q)}</label><textarea id="refl${i}" maxlength="1200" data-reflect="${i}" placeholder="Type your reflection here...">${esc(state.reflections[i])}</textarea></div>`).join("")}<div class="save-note" id="saveNote"></div></div>`;
+
+    const body = tab === "review" ? review : tab === "reflection" ? reflection : reportSummary;
+    rv.innerHTML = `<div class="tabs">
+      <button type="button" class="tab-btn ${tab==="summary"?"active":""}" data-tab="summary">Performance Report</button>
+      <button type="button" class="tab-btn ${tab==="review"?"active":""}" data-tab="review">Answer Review</button>
+      <button type="button" class="tab-btn ${tab==="reflection"?"active":""}" data-tab="reflection">Technician Reflection</button>
+      <button type="button" class="secondary-btn" id="backToQueue" style="margin-left:auto;">Back to Queue</button>
+    </div>${body}`;
+    rv.querySelectorAll("[data-tab]").forEach(btn=>btn.addEventListener("click",()=>renderReport(btn.dataset.tab)));
+    $("#backToQueue").addEventListener("click",()=>{ rv.classList.add("hidden"); $("#simulationView").classList.remove("hidden"); state.reportOpen=false; });
+    rv.querySelectorAll("[data-reflect]").forEach(ta=>ta.addEventListener("input",()=>{
+      state.reflections[Number(ta.dataset.reflect)]=ta.value;
+      const sn=$("#saveNote"); if(sn){sn.textContent="Reflection saved in this simulation session."; setTimeout(()=>{if($("#saveNote")) $("#saveNote").textContent="";},900);}
+    }));
+    rv.scrollIntoView({behavior:"smooth",block:"start"});
+  }
+
+  function resetAll(){
+    if(state.timer) clearInterval(state.timer);
+    state.started=false; state.active=null; state.completed={}; state.totalWrong=0; state.totalHints=0; state.startTime=null; state.reportOpen=false; state.reflections=Array(6).fill("");
+    tickets.forEach(t=>state.progress[t.id]=freshTicketProgress());
+    $("#resetModal").classList.add("hidden");
+    $("#simulationView").classList.add("hidden");
+    $("#reportView").classList.add("hidden");
+    $("#welcomeView").classList.remove("hidden");
+    $("#reportBtn").classList.add("hidden");
+    $("#ticketContent").classList.add("hidden");
+    $("#emptyTicket").classList.remove("hidden");
+    updateMetrics(); renderQueue();
+    root.scrollIntoView({behavior:"smooth",block:"start"});
+  }
+
+  $("#startBtn").addEventListener("click",startSimulation);
+  $("#resetBtn").addEventListener("click",()=>$("#resetModal").classList.remove("hidden"));
+  $("#cancelReset").addEventListener("click",()=>$("#resetModal").classList.add("hidden"));
+  $("#confirmReset").addEventListener("click",resetAll);
+  $("#resetModal").addEventListener("click",e=>{if(e.target.id==="resetModal") $("#resetModal").classList.add("hidden");});
+  $("#finishBtn").addEventListener("click",()=>renderReport("summary"));
+  $("#reportBtn").addEventListener("click",()=>renderReport("summary"));
+  renderQueue(); updateMetrics();
+})();
+</script>
+</body>
+</html>
